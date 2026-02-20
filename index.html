@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Whisper of Steel | A Saga by Ankur Pandey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@200;500;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --parchment: #e8e2d6;
+            --accent: #bc002d; /* Japanese Crimson */
+            --gold: #c4a484;
+            --text: #d1d1d1;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Serif JP', serif;
+            margin: 0;
+            line-height: 2.1;
+            overflow-x: hidden;
+        }
+
+        /* Reading Progress Bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--accent); width: 0%; z-index: 1000;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 4px; }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--bg)), url('http://googleusercontent.com/generated_image_content/0');
+            background-size: cover; background-position: center;
+            padding: 20px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 10vw, 5rem); margin: 0; color: #fff; line-height: 1; }
+        .hero p { font-size: 1.2rem; color: var(--gold); margin-top: 15px; border-overline: 1px solid var(--gold); }
+        
+        .container { max-width: 850px; margin: 0 auto; padding: 100px 25px; }
+
+        .monologue {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--parchment);
+            font-style: italic;
+            text-align: center;
+            margin: 100px 0;
+            padding: 40px;
+            border: 1px solid rgba(196, 164, 132, 0.2);
+            position: relative;
+        }
+        .monologue::before { content: "“"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 5rem; color: var(--accent); font-family: 'Cinzel'; }
+
+        /* Chapter Styling */
+        .chapter { margin-bottom: 180px; position: relative; }
+        .chapter-num { font-family: 'Cinzel'; color: var(--accent); font-size: 0.9rem; font-weight: bold; display: block; margin-bottom: 10px; }
+        .chapter h2 { font-size: 2.2rem; color: #fff; margin-bottom: 40px; display: flex; align-items: center; }
+        .chapter h2::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(to right, var(--accent), transparent); margin-left: 20px; }
+        
+        p { margin-bottom: 35px; text-align: justify; font-weight: 300; }
+        
+        img { 
+            width: 100%; border-radius: 2px; margin: 40px 0; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Part 2 Hook & Button */
+        .next-part-hook {
+            background: var(--surface);
+            padding: 80px 40px;
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            margin-top: 100px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+        }
+        .next-part-hook h3 { color: var(--accent); margin-bottom: 20px; }
+        .logline-p2 { font-style: italic; color: var(--parchment); max-width: 650px; margin: 0 auto 40px; font-size: 1.2rem; }
+        
+        .btn-p2 {
+            display: inline-block;
+            padding: 20px 45px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid var(--accent);
+            position: relative;
+            transition: 0.4s all;
+            overflow: hidden;
+        }
+        .btn-p2:hover { background: var(--accent); color: white; box-shadow: 0 0 30px var(--accent); }
+
+        footer { 
+            padding: 100px 20px; background: #000; text-align: center; 
+            border-top: 1px solid #1a1a1a; 
+        }
+        .author-card { border-top: 2px solid var(--accent); display: inline-block; padding-top: 40px; }
+        .author-name { font-size: 2.5rem; color: #fff; margin: 0; }
+        .author-email { color: var(--gold); text-decoration: none; font-size: 1rem; }
+
+        .fade-in { opacity: 0; transform: translateY(40px); transition: 1.2s all ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<section class="hero">
+    <div class="fade-in">
+        <h1>The Last Whisper of Steel</h1>
+        <p>A SAGA BY ANKUR PANDEY</p>
+        <div class="logline-p2" style="font-size: 1rem; margin-top: 20px;">Book One: The Sleeping Pond</div>
+    </div>
+</section>
+
+<div class="container">
+    
+    <div class="monologue fade-in">
+        "A sword that is never drawn eventually rusts in the scabbard. I am rusting. And if I rust away completely, who would stand between the village and the encroaching shadow?"
+    </div>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 01</span>
+        <h2>The Weight of Rust</h2>
+        <p>Hideo sat on the engawa porch of his small home, the worn wood smooth beneath his calloused feet. He was the last. The others—brothers in spirit if not blood, men who had stood shoulder-to-shoulder with him against tides of iron and fire—were gone. They were burial mounds under the cedar trees, sinking slowly back into the earth of the village they had died to protect.</p>
+        <p>He looked down at his hands. They were maps of his history, scarred by blades, burned by gunpowder, thickened by the grip of the katana handle. Now, they mostly held a tea bowl or a calligraphy brush. The war was over, they said. The Emperor had declared a new age of peace, an age of roaring engines and black ships that spat smoke.</p>
+        <img src="http://googleusercontent.com/generated_image_content/1" alt="Legacy of Steel">
+        <p>But Hideo knew that peace was just a lie told by the victors. Below his small plateau, the village of Kamiki slumbered in the pre-dawn violet mist. He had seen them last moon—men in strange, tight uniforms surveying the ridge lines, their eyes hungry for the veins of ore beneath the soil and the ancient timber of the sacred forest.</p>
+    </section>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 02</span>
+        <h2>Eyes Like Embers</h2>
+        <p>The village children feared him, mostly. All except one: Kenji. He was an orphan of the last famine, living on the charity of the rice farmers. He was thin, but his eyes held a terrifying stillness. One evening, Hideo found Kenji sitting by the river, sharpening a crude wooden stick. </p>
+        <p>"Why do you sharpen the stick, boy?" Hideo’s voice was like grinding stones. Kenji didn't turn. "Because the world is hard, old man. If I am soft, it will break me."</p>
+        <img src="http://googleusercontent.com/generated_image_content/3" alt="The Mentor">
+        <p>Kenji finally turned. His face was smudged with dirt, but those eyes locked onto Hideo's. "Then teach me to hold something that won't break." Hideo felt the burden of legacy settle onto his shoulders. "Come to my house at first light. If you are late, do not come at all."</p>
+    </section>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 03</span>
+        <h2>The Temple of Sleeping Gods</h2>
+        <p>One misty morning, Hideo led Kenji past the main temple building to the secluded inner sanctum: The Mirror Pond. It was an unnatural body of water. No stream fed it, no outlet drained it. The surface was perfectly glass-like, reflecting the ancient cedars.</p>
+        <p>"Look," Hideo commanded. Kenji stepped to the mossy edge. For a split second, the reflection hadn't been his face. It had been something massive, coiled deep beneath the surface—a shimmer of iridescent scales. "This pond is a seal," Hideo whispered. "The outsiders sense the energy here. If they break the seal, the god below will wake. And it will not be kind."</p>
+        <img src="http://googleusercontent.com/image_generation_content/11" alt="The Sacred Seal">
+    </section>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 04</span>
+        <h2>The Way of Wood and Water</h2>
+        <p>The training was brutal. Hideo pushed the boy to the breaking point daily. They trained with bokken until Kenji's arms shook so violently he couldn't eat. "Your mind is like a wild dog snapping at flies," Hideo would bark. "You fight with anger. Anger is slow."</p>
+        <img src="http://googleusercontent.com/generated_image_content/2" alt="Discipline in Mist">
+        <p>He dragged the exhausted boy back to the Mirror Pond. "Look at the water. It reflects everything perfectly because it is still. Your mind must be the pond." Slowly, over seasons, Kenji began to change. He didn't think; he flowed.</p>
+    </section>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 05</span>
+        <h2>The Shadow at the Torii Gate</h2>
+        <p>The threat arrived in mid-winter. Three mercenaries on horseback, smelling of cheap sake and arrogance, came to claim the mountain ridge. Hideo started to step forward, but Kenji placed a hand on his arm. "My turn, Sensei," Kenji whispered.</p>
+        <p>Kenji walked out unarmed. The leader swung a heavy, curved sword. Kenji moved like water around a stone. He sidestepped the steel and drove the blunt end of his bokken into the leader's solar plexus. The man tumbled into the snow, gasping. The others frozen, broken by the sheer weight of the boy's presence. They fled into the cold dark.</p>
+        <img src="http://googleusercontent.com/image_generation_content/14" alt="The New Guardian">
+    </section>
+
+    <section class="chapter fade-in">
+        <span class="chapter-num">Chapter 06</span>
+        <h2>The Departure at Dawn</h2>
+        <p>The dawn was cold and blue. Hideo stood by his horse, his red lacquer armor gleaming. He untied his wakizashi and handed it to Kenji. "This blade has tasted too much blood. Your duty is harder—to prevent the war before it starts."</p>
+        <img src="http://googleusercontent.com/image_generation_content/12" alt="The Handover">
+        <p>Kenji took the sword, bowing deeply. "Where will you go, Sensei?" Hideo looked toward the distant, towering peaks hidden in the clouds. "To where it began. To lay my own burden down." He mounted his horse. "You are the Guardian of the Pond now. Do not let the water Ripple."</p>
+        <img src="http://googleusercontent.com/image_generation_content/13" alt="Final Ride">
+    </section>
+
+    <div class="next-part-hook fade-in">
+        <h3>COMING SOON: BOOK TWO</h3>
+        <h2>THE RISING STORM</h2>
+        <p class="logline-p2">"A decade later, a steam-powered empire arrives to strip the mountain’s soul. Kenji must decide if his master’s vow of peace is worth the death of his village—or if the Last Whisper must finally become a roar."</p>
+        <a href="#" class="btn-p2">PRE-ORDER PART 2</a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="author-card fade-in">
+        <h3>Story Conceived & Authored By</h3>
+        <p class="author-name">Ankur Pandey</p>
+        <a href="mailto:pandeyji.ankur96@gmail.com" class="author-email">pandeyji.ankur96@gmail.com</a>
+    </div>
+</footer>
+
+<script>
+    // Scroll Progress
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    // Animation Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
