@@ -1,227 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Last Whisper of Steel | A Saga by Ankur Pandey</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@200;500;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050505;
-            --surface: #0f0f0f;
-            --parchment: #e8e2d6;
-            --accent: #bc002d; /* Japanese Crimson */
-            --gold: #c4a484;
-            --text: #d1d1d1;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Whisper of Steel | A Saga by Ankur Pandey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@200;500;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #0f0f0f;
+      --parchment: #e8e2d6;
+      --accent: #bc002d;
+      /* Japanese Crimson */
+      --gold: #c4a484;
+      --text: #d1d1d1;
+    }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Noto Serif JP', serif;
-            margin: 0;
-            line-height: 2.1;
-            overflow-x: hidden;
-        }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-        /* Reading Progress Bar */
-        #progress-bar {
-            position: fixed; top: 0; left: 0; height: 4px;
-            background: var(--accent); width: 0%; z-index: 1000;
-            box-shadow: 0 0 10px var(--accent);
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      margin: 0;
+      line-height: 2.1;
+      overflow-x: hidden;
+    }
 
-        h1, h2, h3 { font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 4px; }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.4), var(--bg)), url('http://googleusercontent.com/generated_image_content/0');
-            background-size: cover; background-position: center;
-            padding: 20px;
-        }
-        .hero h1 { font-size: clamp(2.5rem, 10vw, 5rem); margin: 0; color: #fff; line-height: 1; }
-        .hero p { font-size: 1.2rem; color: var(--gold); margin-top: 15px; border-overline: 1px solid var(--gold); }
-        
-        .container { max-width: 850px; margin: 0 auto; padding: 100px 25px; }
+    /* Reading Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent);
+      width: 0%;
+      z-index: 1000;
+      box-shadow: 0 0 10px var(--accent);
+    }
 
-        .monologue {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            color: var(--parchment);
-            font-style: italic;
-            text-align: center;
-            margin: 100px 0;
-            padding: 40px;
-            border: 1px solid rgba(196, 164, 132, 0.2);
-            position: relative;
-        }
-        .monologue::before { content: "“"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 5rem; color: var(--accent); font-family: 'Cinzel'; }
+    h1,
+    h2,
+    h3 {
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
 
-        /* Chapter Styling */
-        .chapter { margin-bottom: 180px; position: relative; }
-        .chapter-num { font-family: 'Cinzel'; color: var(--accent); font-size: 0.9rem; font-weight: bold; display: block; margin-bottom: 10px; }
-        .chapter h2 { font-size: 2.2rem; color: #fff; margin-bottom: 40px; display: flex; align-items: center; }
-        .chapter h2::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(to right, var(--accent), transparent); margin-left: 20px; }
-        
-        p { margin-bottom: 35px; text-align: justify; font-weight: 300; }
-        
-        img { 
-            width: 100%; border-radius: 2px; margin: 40px 0; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            border-bottom: 3px solid var(--accent);
-        }
+    /* Hero Section */
+    .hero {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), var(--bg)), url('http://googleusercontent.com/generated_image_content/0');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+    }
 
-        /* Part 2 Hook & Button */
-        .next-part-hook {
-            background: var(--surface);
-            padding: 80px 40px;
-            text-align: center;
-            border: 1px solid #1a1a1a;
-            margin-top: 100px;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
-        }
-        .next-part-hook h3 { color: var(--accent); margin-bottom: 20px; }
-        .logline-p2 { font-style: italic; color: var(--parchment); max-width: 650px; margin: 0 auto 40px; font-size: 1.2rem; }
-        
-        .btn-p2 {
-            display: inline-block;
-            padding: 20px 45px;
-            background: transparent;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            letter-spacing: 2px;
-            border: 1px solid var(--accent);
-            position: relative;
-            transition: 0.4s all;
-            overflow: hidden;
-        }
-        .btn-p2:hover { background: var(--accent); color: white; box-shadow: 0 0 30px var(--accent); }
+    .hero h1 {
+      font-size: clamp(2.5rem, 10vw, 5rem);
+      margin: 0;
+      color: #fff;
+      line-height: 1;
+    }
 
-        footer { 
-            padding: 100px 20px; background: #000; text-align: center; 
-            border-top: 1px solid #1a1a1a; 
-        }
-        .author-card { border-top: 2px solid var(--accent); display: inline-block; padding-top: 40px; }
-        .author-name { font-size: 2.5rem; color: #fff; margin: 0; }
-        .author-email { color: var(--gold); text-decoration: none; font-size: 1rem; }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-top: 15px;
+      border-overline: 1px solid var(--gold);
+    }
 
-        .fade-in { opacity: 0; transform: translateY(40px); transition: 1.2s all ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 100px 25px;
+    }
 
-    </style>
+    .monologue {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      color: var(--parchment);
+      font-style: italic;
+      text-align: center;
+      margin: 100px 0;
+      padding: 40px;
+      border: 1px solid rgba(196, 164, 132, 0.2);
+      position: relative;
+    }
+
+    .monologue::before {
+      content: "“";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 5rem;
+      color: var(--accent);
+      font-family: 'Cinzel';
+    }
+
+    /* Chapter Styling */
+    .chapter {
+      margin-bottom: 180px;
+      position: relative;
+    }
+
+    .chapter-num {
+      font-family: 'Cinzel';
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .chapter h2 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .chapter h2::after {
+      content: "";
+      height: 1px;
+      flex-grow: 1;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-left: 20px;
+    }
+
+    p {
+      margin-bottom: 35px;
+      text-align: justify;
+      font-weight: 300;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 2px;
+      margin: 40px 0;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    /* Part 2 Hook & Button */
+    .next-part-hook {
+      background: var(--surface);
+      padding: 80px 40px;
+      text-align: center;
+      border: 1px solid #1a1a1a;
+      margin-top: 100px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .next-part-hook h3 {
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .logline-p2 {
+      font-style: italic;
+      color: var(--parchment);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      font-size: 1.2rem;
+    }
+
+    .btn-p2 {
+      display: inline-block;
+      padding: 20px 45px;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border: 1px solid var(--accent);
+      position: relative;
+      transition: 0.4s all;
+      overflow: hidden;
+    }
+
+    .btn-p2:hover {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 0 30px var(--accent);
+    }
+
+    footer {
+      padding: 100px 20px;
+      background: #000;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .author-card {
+      border-top: 2px solid var(--accent);
+      display: inline-block;
+      padding-top: 40px;
+    }
+
+    .author-name {
+      font-size: 2.5rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .author-email {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1.2s all ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="progress-bar"></div>
+  <div id="progress-bar"></div>
 
-<section class="hero">
+  <section class="hero">
     <div class="fade-in">
-        <h1>The Last Whisper of Steel</h1>
-        <p>A SAGA BY ANKUR PANDEY</p>
-        <div class="logline-p2" style="font-size: 1rem; margin-top: 20px;">Book One: The Sleeping Pond</div>
+      <h1>The Last Whisper of Steel</h1>
+      <p>A SAGA BY ANKUR PANDEY</p>
+      <div class="logline-p2" style="font-size: 1rem; margin-top: 20px;">Book One: The Sleeping Pond</div>
     </div>
-</section>
+  </section>
 
-<div class="container">
-    
+  <div class="container">
+
     <div class="monologue fade-in">
-        "A sword that is never drawn eventually rusts in the scabbard. I am rusting. And if I rust away completely, who would stand between the village and the encroaching shadow?"
+      "A sword that is never drawn eventually rusts in the scabbard. I am rusting. And if I rust away completely, who would stand between the village and the        encroaching shadow?"
     </div>
 
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 01</span>
-        <h2>The Weight of Rust</h2>
-        <p>Hideo sat on the engawa porch of his small home, the worn wood smooth beneath his calloused feet. He was the last. The others—brothers in spirit if not blood, men who had stood shoulder-to-shoulder with him against tides of iron and fire—were gone. They were burial mounds under the cedar trees, sinking slowly back into the earth of the village they had died to protect.</p>
-        <p>He looked down at his hands. They were maps of his history, scarred by blades, burned by gunpowder, thickened by the grip of the katana handle. Now, they mostly held a tea bowl or a calligraphy brush. The war was over, they said. The Emperor had declared a new age of peace, an age of roaring engines and black ships that spat smoke.</p>
-        <img src="http://googleusercontent.com/generated_image_content/1" alt="Legacy of Steel">
-        <p>But Hideo knew that peace was just a lie told by the victors. Below his small plateau, the village of Kamiki slumbered in the pre-dawn violet mist. He had seen them last moon—men in strange, tight uniforms surveying the ridge lines, their eyes hungry for the veins of ore beneath the soil and the ancient timber of the sacred forest.</p>
+      <span class="chapter-num">Chapter 01</span>
+      <h2>The Weight of Rust</h2>
+      <p>Hideo sat on the engawa porch of his small home, the worn wood smooth beneath his calloused feet. He was the last. The others—brothers in spirit if       not blood, men who had stood shoulder-to-shoulder with him against tides of iron and fire—were gone. They were burial mounds under the cedar trees,           sinking slowly back into the earth of the village they had died to protect.</p>
+      <p>He looked down at his hands. They were maps of his history, scarred by blades, burned by gunpowder, thickened by the grip of the katana handle. Now,       they mostly held a tea bowl or a calligraphy brush. The war was over, they said. The Emperor had declared a new age of peace, an age of roaring engines       and black ships that spat smoke.</p>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771672132/Smurai_face_gp55sl.jpg" alt="The Hideo">
+      <!-- <img src=https://res.cloudinary.com/dixgenhbd/image/upload/v1771668034/Samurai_Standing_rtkfxe.jpg> -->
+      <p>But Hideo knew that peace was just a lie told by the victors. Below his small plateau, the village of Kamiki slumbered in the pre-dawn violet mist.       He had seen them last moon—men in strange, tight uniforms surveying the ridge lines, their eyes hungry for the veins of ore beneath the soil and the         ancient timber of the sacred forest.</p>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771668034/Samurai_Standing_rtkfxe.jpg" alt="The Lone Warrior">
+      <p> Hideo picked up his katana from its stand. He didn't need to draw it to know its weight, its balance, or the chilling song it sang when swung in         anger. He was too old for the new war that was coming. His knees complained in the cold damp, and his eyesight, once sharp enough to count the               fletching on a distant arrow, now blurred at the edges.</p>
+      <p>"A sword that is never drawn eventually rusts in the scabbard," he whispered to the empty air. He was rusting. And if he rusted away completely, who       would stand between the village and the encroaching shadow? Who would guard the temple where the water was too still?</p>
+      <p>He needed a whetstone. He needed a successor. </p>
     </section>
 
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 02</span>
-        <h2>Eyes Like Embers</h2>
-        <p>The village children feared him, mostly. All except one: Kenji. He was an orphan of the last famine, living on the charity of the rice farmers. He was thin, but his eyes held a terrifying stillness. One evening, Hideo found Kenji sitting by the river, sharpening a crude wooden stick. </p>
-        <p>"Why do you sharpen the stick, boy?" Hideo’s voice was like grinding stones. Kenji didn't turn. "Because the world is hard, old man. If I am soft, it will break me."</p>
-        <img src="http://googleusercontent.com/generated_image_content/3" alt="The Mentor">
-        <p>Kenji finally turned. His face was smudged with dirt, but those eyes locked onto Hideo's. "Then teach me to hold something that won't break." Hideo felt the burden of legacy settle onto his shoulders. "Come to my house at first light. If you are late, do not come at all."</p>
+      <span class="chapter-num">Chapter 02</span>
+      <h2>Eyes Like Embers</h2>
+      <p>The village children feared him, mostly. He was a relic, a walking ghost story in armor that clattered faintly when he walked to the shrine. They         played at war with sticks, shouting imitated commands, but they scattered like minnows when his shadow fell across their games.
+      <br>
+      <br>All except one: Kenji.<br>
+      <br> He was an orphan of the last famine, living on the charity of the rice farmers, sleeping in the haylofts. He was thin, shivering in a patched           hemp tunic, but his eyes held a terrifying stillness. When the other children ran, Kenji stood his ground. He didn't look at Hideo with fear, nor             with hero- worship. He looked at the old samurai with an assessing, almost starving intensity.
+      <br>
+      <br> Hideo watched the boy for a week. He saw Kenji sit perfectly still for an hour, watching a heron stalk a fish, mimicking its patience. He saw           the boy take a beating from an older farmhand for stealing an apple, never crying out, his eyes burning with cold defiance.
+      The boy had fire, but it was wild, undirected fire that would either consume him or forge him.
+      One evening, as the sun bled crimson over the western peaks, Hideo found Kenji sitting by the river, sharpening a crude wooden stick against a flat           rock.
+      Hideo stopped ten paces away. The boy didn't turn, but his shoulders tensed. He knew the samurai was there.
+      <br>
+      </p>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771668035/Kenji_s_Training_fqdjjg.jpg" alt="The Mentor">
+      <p>"Why do you sharpen the stick, boy?" Hideo’s voice was like grinding stones. Kenji didn't turn. "Because the world is hard, old man. If I am soft,         it will break me."</p>
+      <p>Kenji finally turned. His face was smudged with dirt, but those eyes locked onto Hideo's. "Then teach me to hold something that won't break." Hideo       felt the burden of legacy settle onto his shoulders. "Come to my house at first light. If you are late, do not come at all."</p>
     </section>
 
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 03</span>
-        <h2>The Temple of Sleeping Gods</h2>
-        <p>One misty morning, Hideo led Kenji past the main temple building to the secluded inner sanctum: The Mirror Pond. It was an unnatural body of water. No stream fed it, no outlet drained it. The surface was perfectly glass-like, reflecting the ancient cedars.</p>
-        <p>"Look," Hideo commanded. Kenji stepped to the mossy edge. For a split second, the reflection hadn't been his face. It had been something massive, coiled deep beneath the surface—a shimmer of iridescent scales. "This pond is a seal," Hideo whispered. "The outsiders sense the energy here. If they break the seal, the god below will wake. And it will not be kind."</p>
-        <img src="http://googleusercontent.com/image_generation_content/11" alt="The Sacred Seal">
+      <span class="chapter-num">Chapter 03</span>
+      <h2>The Temple of Sleeping Gods</h2>
+      <p>The training did not begin with the sword. It began with buckets of watercarried up the hundred stone steps to the hidden temple behind the village.       It began with scrubbing the mildew from the ancient torii gates until Kenji's hands bled.
+      For a month, the boy was nothing more than a servant. He grew leaner, the baby fat melting into wiry muscle. He learned to move without sound, to             anticipate Hideo’s needs before the old man spoke. He learned that discipline was not a punishment, but a vessel to hold power.</p>
+      <p>One misty morning, Hideo led Kenji past the main temple building to the secluded inner sanctum: The Mirror Pond. It was an unnatural body of water.       No stream fed it, no outlet drained it. The surface was perfectly glass-like, reflecting the ancient cedars.</p><br>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771677339/Mystical_Pond_nlzf2v.jpg" alt="The Mystical Temple">
+      <p>"Look," Hideo commanded.
+      <br><br>
+      Kenji stepped to the mossy edge and looked down. He gasped and recoiled.
+      
+      For a split second, the reflection hadn't been the trees, or his own face. It had been something massive, coiled deep beneath the surface—a shimmer of       iridescent scales, a suggestion of an eye larger than a house. It was gone as quickly as a heartbeat, replaced again by the placid reflection of the         forest.
+      <br><br>
+      "What is that?" Kenji whispered, his voice trembling for the first time since Hideo had known him.
+      <br><br>
+      "The reason we are here," Hideo said, his voice solemn. "The village thinks this temple honors the harvest spirits. That is a lie to keep them sleeping       soundly. This pond is a seal. What sleeps beneath has been slumbering for a thousand years, kept drowsy by the prayers of the monks and the stillness         of this place."
+      </p>
+      <p>
+      Hideo placed a heavy hand on Kenji's shoulder. "The outsiders with their loud machines... they sense the energy here. They do not know what it is, only       that it is power. If they break the seal, if they disturb the water with greed and violence, the god below will wake. And it will not be kind."
+      <br><br>
+      Kenji looked at the water, fear warring with resolve in his eyes. "How do I stop them? I am just a boy with a wooden stick."
+      <br><br>
+      "Then we must turn the boy into iron, and the stick into steel."</p>
     </section>
 
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 04</span>
-        <h2>The Way of Wood and Water</h2>
-        <p>The training was brutal. Hideo pushed the boy to the breaking point daily. They trained with bokken until Kenji's arms shook so violently he couldn't eat. "Your mind is like a wild dog snapping at flies," Hideo would bark. "You fight with anger. Anger is slow."</p>
-        <img src="http://googleusercontent.com/generated_image_content/2" alt="Discipline in Mist">
-        <p>He dragged the exhausted boy back to the Mirror Pond. "Look at the water. It reflects everything perfectly because it is still. Your mind must be the pond." Slowly, over seasons, Kenji began to change. He didn't think; he flowed.</p>
+      <span class="chapter-num">Chapter 04</span>
+      <h2>The Way of Wood and Water</h2>
+      <p>The training changed. It became brutal.
+      <br>
+      Hideo pushed the boy to the breaking point daily. They trained with bokken (wooden swords) in the temple courtyard until Kenji's arms shook so               violently he couldn't lift his chopsticks to eat. Hideo was relentless, his wooden blade a stinging viper that found every opening in Kenji’s clumsy         defense.
+      <br><br>
+      Bruised, exhausted, and frustrated, Kenji would fall into the dirt, gasping for air.
+      <br><br>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771677954/Kenji_s_Training_3_bi6ayl.jpg" alt="The Brutal Training">
+      "Your mind is like a wild dog snapping at flies," Hideo would bark, standing over him, barely winded. "You fight with anger. Anger is slow. Anger makes       you predictable."
+      <br><br>
+      He dragged the exhausted boy back to the Mirror Pond.
+      <br><br>
+      "Sit."
+      <br><br>
+      Kenji sat in Zazen meditation on the damp moss edge.
+      <br><br>
+      "Look at the water. It reflects everything perfectly because it is still. It does not anticipate the leaf falling onto its surface; it simply receives       it, ripples, and returns to stillness. Your mind must be the pond."
+      <br><br>
+      It was harder than the sword training. Kenji spent hours fighting his own impatient mind. But slowly, over seasons, as the autumn maples turned blood-       red and shed their leaves onto the water, something shifted.
+      <br><br>
+      One afternoon during sparring, Hideo launched a blistering overhead strike meant to crack Kenji’s defenses wide open. Instead of flinching or meeting         force with force, Kenji exhaled. His mind went blank, like the surface of the water. He didn't think; he flowed. He stepped aside, the wooden blade           missing him by an inch, and brought his own bokken down in a controlled tap against Hideo’s ribs.
+      <br><br>
+      Silence fell in the courtyard.
+      <br><br>
+      Hideo lowered his sword. A rare, faint smile touched his lips. "The water ripples," he murmured.</p>
     </section>
 
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 05</span>
-        <h2>The Shadow at the Torii Gate</h2>
-        <p>The threat arrived in mid-winter. Three mercenaries on horseback, smelling of cheap sake and arrogance, came to claim the mountain ridge. Hideo started to step forward, but Kenji placed a hand on his arm. "My turn, Sensei," Kenji whispered.</p>
-        <p>Kenji walked out unarmed. The leader swung a heavy, curved sword. Kenji moved like water around a stone. He sidestepped the steel and drove the blunt end of his bokken into the leader's solar plexus. The man tumbled into the snow, gasping. The others frozen, broken by the sheer weight of the boy's presence. They fled into the cold dark.</p>
-        <img src="http://googleusercontent.com/image_generation_content/14" alt="The New Guardian">
+      <span class="chapter-num">Chapter 05</span>
+      <h2>The Shadow at the Torii Gate</h2>
+      <p>It was mid-winter. Snow dusted the village roofs. Three men on horseback rode up the valley path. They were not soldiers, but mercenaries hired by         the surveying companies—rough men in leather and mismatched armor, smelling of cheap sake and arrogance. They carried early, crude firearms strapped to       their saddles alongside steel blades.
+      <br>
+      They stopped at the village square, their horses snorting steam in the cold air. The leader, a man with a jagged scar across his nose, spat on the           frozen ground</p>
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771679453/ef6a024d-fb4d-49dc-90d0-8a9c16fc00a5_yesngx.jpg" alt="The Mercenaries">
+      <p>"We are looking for the path to the upper ridge," the man demanded of a terrified farmer. "And fresh supplies. We’ll take whatever rice and sake you       have."
+      Hideo watched from the shadows of an alleyway. He started to step forward, his hand instinctively going to his katana hilt.
+      <br>
+      A hand touched his arm. It was Kenji. The boy was sixteen now, tall and lean, his face hardened by the mountain winds. He wore Hideo’s old, second-best       armor—lacquered leather plates that didn't quite fit him yet.
+      </p>
+      
+      <p>"My turn, Sensei," Kenji whispered.
+      
+      Before Hideo could stop him, Kenji walked out into the square. He looked impossibly young against the three hardened mercenaries. He carried only a           bokken tucked into his obi sash.
+      <br><br>
+      The mercenary leader laughed. "Look at this. The village puppy came out to bark."
+      <br><br>
+      "Turn around," Kenji said, his voice flat and calm. "The mountain is closed to you."
+      <br><br>
+      The leader sneered and drew a heavy, curved sword. "I'll carve you a lesson in manners, boy." He kicked his horse forward, swinging the blade down in a       lethal arc.
+      <br><br>
+      Kenji didn't draw a weapon. He didn't even raise his hands. He merely exhaled, sinking his weight into the earth. He waited until the steel was inches       from his face, until he could smell the horse's sweat and the man’s sour breath.
+
+      He moved like water flowing around a stone. He sidestepped the blade, stepping inside the horse's guard. With a concise, powerful movement, he drove         the blunt end of his sheathed bokken into the rider's solar plexus.
+
+      The man didn't even scream; the air just left him in a whoosh. He tumbled backward off the saddle, landing hard in the snow, gasping like a landed           fish.
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771680604/e8c41640-06c7-456d-bd1c-157408449a7f_qxb7pz.jpg" alt="The Kenji Fight">
+      The other two mercenaries fumbled for their clumsy firearms, but Kenji was already looking at them. His eyes held that terrifying, ancient stillness of       the Mirror Pond. It was the look of a predator that had already decided their fate.
+
+      The mercenaries froze. They looked at their gasping leader, looked at the unarmed boy, and the sheer weight of his presence broke their nerve. They           wheeled their horses and galloped back down the valley path, leaving their leader cursing in the snow.
+      <br><br>
+      From the shadows, Hideo let out a breath he didn't know he was holding. The boy was ready.</p>
+      
     </section>
 
+    
     <section class="chapter fade-in">
-        <span class="chapter-num">Chapter 06</span>
-        <h2>The Departure at Dawn</h2>
-        <p>The dawn was cold and blue. Hideo stood by his horse, his red lacquer armor gleaming. He untied his wakizashi and handed it to Kenji. "This blade has tasted too much blood. Your duty is harder—to prevent the war before it starts."</p>
-        <img src="http://googleusercontent.com/image_generation_content/12" alt="The Handover">
-        <p>Kenji took the sword, bowing deeply. "Where will you go, Sensei?" Hideo looked toward the distant, towering peaks hidden in the clouds. "To where it began. To lay my own burden down." He mounted his horse. "You are the Guardian of the Pond now. Do not let the water Ripple."</p>
-        <img src="http://googleusercontent.com/image_generation_content/13" alt="Final Ride">
+      <span class="chapter-num">Chapter 06</span>
+      <h2>The Departure at Dawn</h2>
+      <p>The dawn was cold, turning the mist in the valley a pale blue.
+
+      Hideo stood by his horse on the ridge overlooking Kamiki. The village was still asleep, peaceful for now. The old samurai wore his full armor, the red       lacquer gleaming dully in the low light. The banner on his back snapped gently in the wind.
+
+      Kenji stood before him. The boy—no, the young man—tried to keep his face mask-like, but his jaw trembled slightly.
+
+      Hideo reached to his waist and untied his wakizashi, the shorter companion sword to his katana. The sheath was polished ray skin, the hilt wrapped in         black silk. He held it out.</p>
+ 
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771677985/Kenji_Training_2_h3lhh0.jpg" alt="The Handover">
+      
+      <p>
+      "This blade has tasted too much blood in my lifetime," Hideo said softly. "Your duty is harder than mine was, Kenji. My duty was to fight wars. Your         duty is to prevent them. Use this only to protect the seal. Never for glory. Never for anger."
+      <br><br>
+      Kenji took the sword with both hands, bowing deeply. When he rose, his eyes were wet. "Where will you go, Sensei?"
+      <br><br>
+      Hideo looked toward the distant, towering peaks hidden in the clouds—the Mount of the First Sun. "To where it began. To lay my own burden down." He           mounted his horse, the leather creaking. He looked down at his student one last time. "You are the Guardian of the Pond now. Do not let the water             Ripple."
+      <br><br>
+      Without looking back, the last samurai turned his horse toward the mountains and rode into the rising sun, becoming just another shadow among the             pines, leaving the future standing alone in the cold morning air.</p>
+     
+      <img src="https://res.cloudinary.com/dixgenhbd/image/upload/v1771677979/The_Last_Ride_hutawu.jpg" alt="Final Ride">
+      
     </section>
 
     <div class="next-part-hook fade-in">
-        <h3>COMING SOON: BOOK TWO</h3>
-        <h2>THE RISING STORM</h2>
-        <p class="logline-p2">"A decade later, a steam-powered empire arrives to strip the mountain’s soul. Kenji must decide if his master’s vow of peace is worth the death of his village—or if the Last Whisper must finally become a roar."</p>
-        <a href="#" class="btn-p2">PRE-ORDER PART 2</a>
+      <h3>COMING SOON: BOOK TWO</h3>
+      <h2>THE RISING STORM</h2>
+      <p class="logline-p2">"A decade later, a steam-powered empire arrives to strip the mountain’s soul. Kenji must decide if his master’s vow of peace is worth the death of his village—or if the Last Whisper must finally become a roar."</p>
+      <a href="#" class="btn-p2">PRE-ORDER PART 2</a>
     </div>
 
-</div>
+  </div>
 
-<footer>
+  <footer>
     <div class="author-card fade-in">
-        <h3>Story Conceived & Authored By</h3>
-        <p class="author-name">Ankur Pandey</p>
-        <a href="mailto:pandeyji.ankur96@gmail.com" class="author-email">pandeyji.ankur96@gmail.com</a>
+      <h3>Story Conceived & Authored By</h3>
+      <p class="author-name">Ankur Pandey</p>
+      <p href="mailto:pandeyji.ankur96@gmail.com" class="author-email">pandeyji.ankur96@gmail.com</p>
     </div>
-</footer>
+  </footer>
 
-<script>
+  <script>
     // Scroll Progress
     window.onscroll = function() {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        document.getElementById("progress-bar").style.width = scrolled + "%";
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      document.getElementById("progress-bar").style.width = scrolled + "%";
     };
-
     // Animation Observer
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.1 });
-
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, {
+      threshold: 0.1
+    });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  </script>
 
 </body>
+
 </html>
